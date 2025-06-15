@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import email from "../assets/icons/email.png";
 import linkedIn from "../assets/icons/linkedin.png";
 import mobile_email from "../assets/images/mobile-email.png";
 import mobile_linkedIn from "../assets/images/mobile-linkedin.png";
 import about from "../assets/images/Logo ITB.png";
-import Gugan from '../assets/images/Gugan_Photo.png';
+import Gugan from "../assets/images/Gugan_Photo.png";
+import Topbar from "./Topbar";
+import GSLOGO from "../assets/images/GS_Logo_Mobile.png";
+import "./../index.css";
 const Landing: React.FC = () => {
   const handleEmailClick = () => {
     window.location.href = "mailto:gugans.info@gmail.com";
   };
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
   return (
-    <>
-      {/* <Topbar /> */}
-      <div className="flex flex-col-reverse lg:h-[350px] lg:flex-row">
+    <div>
+      <div className="flex flex-col-reverse lg:h-[350px] lg:flex-row relative">
+        <div className="absolute top-3 w-full">
+          <Topbar />
+        </div>
         {/* Info Section */}
         <section className="bg-[#D7D7D7] hidden md:flex md:w-full lg:w-1/2 p-36 flex-col items-center">
           {/* Info Section */}
@@ -49,6 +56,40 @@ const Landing: React.FC = () => {
         </section>
         {/* Small Screen only */}
         <section className="bg-black w-full md:hidden relative">
+          {/* Hamburger Button */}
+          <div className="flex justify-between">
+            <img src={GSLOGO} alt="" className="h-10 w-10" />
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className={`hamburger absolute right-3 top-3 z-50 ${
+                menuOpen ? "open" : ""
+              }`}
+              type="button"
+            >
+              <span className="hamburger-top"></span>
+              <span className="hamburger-middle"></span>
+              <span className="hamburger-bottom"></span>
+            </button>
+          </div>
+          {/* Mobile Menu */}
+          {menuOpen && (
+            <div className="absolute p-6 rounded-lg bg-[#3b3054] opacity-100 left-6 right-6 top-20 z-40">
+              <div className="flex flex-col items-center justify-center w-full space-y-6 font-bold text-white rounded-sm">
+                <a href="#" className="w-full text-center">
+                  About Me
+                </a>
+                <a href="#" className="w-full text-center">
+                  Skills
+                </a>
+                <a
+                  className="w-full py-3 text-center text-black rounded-full bg-white active:bg-gray-300"
+                  onClick={() => window.location.href = 'tel:+918098707177'}
+                >
+                  Contact
+                </a>
+              </div>
+            </div>
+          )}
           <img
             src={Gugan}
             alt="Profile"
@@ -68,12 +109,14 @@ const Landing: React.FC = () => {
 
           <div className="absolute bottom-3 right-5 transform -translate-y-1/2 space-y-4">
             <a onClick={handleEmailClick}>
-               <img src={mobile_email} alt="Email" className="mb-4" />
+              <img src={mobile_email} alt="Email" className="mb-4" />
             </a>
-            <a href="https://www.linkedin.com/in/gugan-s-38275819a/"
-                target="_blank"
-                rel="noopener noreferrer">
-               <img src={mobile_linkedIn} alt="LinkedIn" />
+            <a
+              href="https://www.linkedin.com/in/gugan-s-38275819a/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={mobile_linkedIn} alt="LinkedIn" />
             </a>
           </div>
         </section>
@@ -93,7 +136,7 @@ const Landing: React.FC = () => {
         </div>
         <img src={about} alt="" className="w-20 h-20 " />
       </section>
-    </>
+    </div>
   );
 };
 
