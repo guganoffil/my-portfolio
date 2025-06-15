@@ -13,7 +13,6 @@ const Landing: React.FC = () => {
     window.location.href = "mailto:gugans.info@gmail.com";
   };
   const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
   return (
     <div>
       <div className="flex flex-col-reverse lg:h-[350px] lg:flex-row relative">
