@@ -1,7 +1,6 @@
 import React from 'react'
 import Landing from './Landing'
 import Aboutinfo from './Aboutinfo'
-import Contact from './Contact'
 import Skill from './Skill'
 import Footer from './Footer'
 
